@@ -4,7 +4,7 @@
         $start = $_POST['start'];
         $end = $_POST['end'];
         $deCount = "SELECT COUNT(*) as counting FROM `transactions` WHERE `tansCreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
-        $totalCedis = "SELECT SUM(`amountPaid`) as total FROM `transactions` WHERE `tansCreatedAt` BETWEEN '$start' AND '$end'";
+        $totalCedis = "SELECT SUM(`amountPaid`) as total FROM `transactions` WHERE `tansCreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
         $dateCount = $con->query($deCount);
         $pprow = $dateCount->fetch_object();
         $putCount = $pprow->counting;
