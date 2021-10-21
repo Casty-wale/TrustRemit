@@ -26,23 +26,23 @@
                   $details = array();
                   $checker = array();
                   
-                  $sql = "SELECT title, firstName, lastName, dob, idType, idNumber, phoneNumber, city, region, countryLong, createdAt FROM userdetails LEFT JOIN accounts ON accounts.id = userdetails.accountId ORDER BY `userdetails`.`user_id` asc";
+                  $sql = "SELECT `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `userdetails`.`dob` AS Udob, `userdetails`.`idType` AS Uidtype, `userdetails`.`idNumber` AS Uidnumber, `accounts`.`phoneNumber` AS ApNumber, `userdetails`.`city` AS Ucity, `userdetails`.`region` AS Uregion, `userdetails`.`countryLong` AS Ucountrylong, `userdetails`.`createdAt` AS Ucreate FROM `userdetails` LEFT JOIN `accounts` ON `accounts`.`id` = `userdetails`.`accountId` ORDER BY `userdetails`.`id` asc";
                   $query = $con->query($sql);
                   $nRow = mysqli_num_rows($query);
                   if($nRow > 0){
                     while($row = $query->fetch_assoc()){
                       array_push($details, [
-                        'fn'=>$row['title'].'. '.$row['firstName'].' '.$row['lastName'],
-                        'id_type'=>$row['idType'],
-                        'id_num'=>$row['idNumber'],
-                        'dob'=>$row['dob'],
-                        'phoneNumber'=>$row['phoneNumber'],
-                        'city'=>$row['city'],
-                        'region'=>$row['region'],
-                        'countryLong'=>$row['countryLong'],
-                        'createdAt'=>$row['createdAt']
+                        'fn'=>$row['Atitle'].'. '.$row['Afname'].' '.$row['Alname'],
+                        'id_type'=>$row['Uidtype'],
+                        'id_num'=>$row['Uidnumber'],
+                        'dob'=>$row['Udob'],
+                        'phoneNumber'=>$row['ApNumber'],
+                        'city'=>$row['Ucity'],
+                        'region'=>$row['Uregion'],
+                        'countryLong'=>$row['Ucountrylong'],
+                        'createdAt'=>$row['Ucreate']
                       ]);
-                      $data = $row['title'].'. '.$row['firstName'].' '.$row['lastName'].$row['idNumber'].$row['dob'];
+                      $data = $row['Atitle'].'. '.$row['Afname'].' '.$row['Alname'].$row['Uidnumber'].$row['Udob'];
                       $data = strtolower($data);
                       array_push($checker, $data);
                     }

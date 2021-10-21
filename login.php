@@ -2,31 +2,26 @@
 
 	//User login checks.
 	session_start();
-	require_once 'includes/connect.php';
+	//require_once 'includes/connect.php';
 
 	if(isset($_POST['login'])){
 		$email = $_POST['email'];
 		$password = $_POST['pass'];
-				// $h_np = password_hash(123, PASSWORD_DEFAULT);
-				// echo $h_np;
-				// $sql_1 = "UPDATE admin SET password = '$h_np' WHERE id = 2";
-				// $query1 = $con->query($sql_1);
-		$sql = "SELECT * FROM admin WHERE email = '$email'";
-		$query1 = $con->query($sql);
-		if($query1->num_rows < 1){
-			$_SESSION['error'] = 'User does not exist';
+		$personal = "kofi@gmail.com";
+		$h_np = password_hash("@123", PASSWORD_DEFAULT);
+
+		$neat = password_verify($password, $h_np);
+		
+		if($email != $personal || $neat != 1){
+			$_SESSION['error'] = 'Wrong input';
 		}
 		else{
-			$row = $query1->fetch_assoc();
-			if(password_verify($password, $row['password'])){
-				$_SESSION['admin'] = $row['id'];
-				// $_SESSION['user'] = $row['username'];
-				// $_SESSION['access'] = $row['access'];
-				// header('location: meme.php');
-				// exit();
-			}
-			else{
-				$_SESSION['error'] = 'Incorrect password';
+			if($email == $personal && $neat = 1){
+				// $_SESSION['admin'] = $row['id'];
+				$_SESSION['user'] = "Kofi Owusu";
+				$_SESSION['access'] = "User";
+				header('location: home.php');
+				exit();
 			}
 		}
 		
@@ -35,6 +30,6 @@
 		$_SESSION['error'] = 'Input User credentials first';
 	}
 
-	header('location: index.php');
+	// header('location: index.php');
 
 ?>

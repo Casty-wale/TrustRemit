@@ -1,6 +1,7 @@
 <?php require_once ('includes/session.php')?>
 <?php require_once('includes/header.php');?>
 <?php require_once('includes/add_model.php');?>
+<?php require_once('includes/connect.php');?>
 <body>
   <div class="sidebar">
     <div class="logo-details">
@@ -76,7 +77,7 @@
       </div>
        <span class="tooltip">Feedback</span>
      </li>
-    <?php if($user['access'] == "Admin"){?>
+    <?php if($_SESSION['access'] == "Admin"){?>
         <li>
           <div class="iocn-link">
           <a href="#addnew" data-toggle="modal">
@@ -91,16 +92,16 @@
          <div class="profile-details">
            <img src="images/upsa.jpg" alt="profileImg">
            <div class="name_job">
-             <div class="name"><?php echo $user['username']?></div>
-             <div class="job"><?php echo $user['access']?></div>
+             <div class="name"><?php echo $_SESSION['user']?></div>
+             <div class="job"><?php echo $_SESSION['access']?></div>
            </div>
          </div>
          <a href = "logout.php"><i class='bx bx-log-out' id="log_out" href = "logout.php"></i></a>
      </li>
     </ul>
   </div>
-  <div class="mname"><?php $user['username']?></div>
-  <div class="mjob"><?php $user['access']?></div>
+  <!-- <div class="mname"><?php //$_SESSION['user']?></div> -->
+  <!-- <div class="mjob"><?php //$_SESSION['access']?></div> -->
   <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector(".icon");

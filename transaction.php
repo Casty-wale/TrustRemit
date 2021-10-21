@@ -3,8 +3,8 @@
     if(isset($_POST['calcu'])){
         $start = $_POST['start'];
         $end = $_POST['end'];
-        $deCount = "SELECT COUNT(*) as counting FROM `transactions` WHERE `tansCreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
-        $totalCedis = "SELECT SUM(`amountPaid`) as total FROM `transactions` WHERE `tansCreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
+        $deCount = "SELECT COUNT(*) as counting FROM `transactions` WHERE `transactions`.`CreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
+        $totalCedis = "SELECT SUM(`amountPaid`) as total FROM `transactions` WHERE `transactions`.`CreatedAt` BETWEEN '$start 00:00' AND '$end 11:59'";
         $dateCount = $con->query($deCount);
         $pprow = $dateCount->fetch_object();
         $putCount = $pprow->counting;
@@ -133,40 +133,40 @@
                   <?php
                     if(isset($_POST['submit-search'])){
                         $search = $_POST['search'];
-                        $sql = "SELECT * FROM transactions LEFT JOIN accounts ON accounts.id = transactions.accountId LEFT JOIN destdetails ON destdetails.code = transactions.destinationCode LEFT JOIN fxrates ON fxrates.id = transactions.fxRateId LEFT JOIN receivers ON receivers.r_id = transactions.receiverId LEFT JOIN services ON services.id = transactions.serviceId WHERE Trans_id = '$search'";
+                        $sql = "SELECT `transactions`.`id` AS Tid, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `transactions`.`invoiceID` AS TinVoice, `transactions`.`orderID` AS Torder, `transactions`.`amountPaid` AS Tpaid, `transactions`.`fees` AS Tfee, `transactions`.`volumeReceived` AS Treceived, `transactions`.`status` AS Tstatus, `transactions`.`CreatedAt` AS Tcreated, `receivers`.`firstName` AS Rfname, `receivers`.`lastName` AS Rlname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `transactions`.`id` = '$search'";
                         $result = mysqli_query($con, $sql);
                         $queryResult = mysqli_num_rows($result);
                         if($queryResult > 0){
                             while($row = mysqli_fetch_assoc($result)){
-                                $caught = $row['orderID'];
+                                $caught = $row['Torder'];
                                 if($caught != ''){
                                     echo "
                                     <tr>
-                                        <td>".$row['Trans_id']."</td>
-                                        <td>".$row['title'].". ".$row['firstName']." ".$row['lastName']."</td>
-                                        <td>".$row['invoiceID']."</td>
-                                        <td>".$row['orderID']."</td>
-                                        <td>".number_format($row['amountPaid'], 2, '.', '')."</td>
-                                        <td>".number_format($row['fees'], 2, '.', '')."</td>
-                                        <td>".number_format($row['volumeReceived'], 2, '.', '')."</td>
-                                        <td>".$row['status']."</td>
-                                        <td>".$row['tansCreatedAt']."</td>
-                                        <td>".$row['firstNameR']." ".$row['lastNameR']."</td>
+                                        <td>".$row['Tid']."</td>
+                                        <td>".$row['Atitle'].". ".$row['Afname']." ".$row['Alname']."</td>
+                                        <td>".$row['TinVoice']."</td>
+                                        <td>".$row['Torder']."</td>
+                                        <td>".number_format($row['Tpaid'], 2, '.', '')."</td>
+                                        <td>".number_format((number_format($row['Tfee'], 2, '.', '')/100)*number_format($row['Tpaid'], 2, '.', ''), 2, '.', '')."</td>
+                                        <td>".number_format($row['Treceived'], 2, '.', '')."</td>
+                                        <td>".$row['Tstatus']."</td>
+                                        <td>".$row['Tcreated']."</td>
+                                        <td>".$row['Rfname']." ".$row['Rlname']."</td>
                                     </tr>
                                     ";
                                 }else{
                                     echo "
                                     <tr style='background: #e46c6cb6'>
-                                        <td>".$row['Trans_id']."</td>
-                                        <td>".$row['title'].". ".$row['firstName']." ".$row['lastName']."</td>
-                                        <td>".$row['invoiceID']."</td>
-                                        <td>".$row['orderID']."</td>
-                                        <td>".number_format($row['amountPaid'], 2, '.', '')."</td>
-                                        <td>".number_format($row['fees'], 2, '.', '')."</td>
-                                        <td>".number_format($row['volumeReceived'], 2, '.', '')."</td>
-                                        <td>".$row['status']."</td>
-                                        <td>".$row['tansCreatedAt']."</td>
-                                        <td>".$row['firstNameR']." ".$row['lastNameR']."</td>
+                                        <td>".$row['Tid']."</td>
+                                        <td>".$row['Atitle'].". ".$row['Afname']." ".$row['Alname']."</td>
+                                        <td>".$row['TinVoice']."</td>
+                                        <td>".$row['Torder']."</td>
+                                        <td>".number_format($row['Tpaid'], 2, '.', '')."</td>
+                                        <td>".number_format((number_format($row['Tfee'], 2, '.', '')/100)*number_format($row['Tpaid'], 2, '.', ''), 2, '.', '')."</td>
+                                        <td>".number_format($row['Treceived'], 2, '.', '')."</td>
+                                        <td>".$row['Tstatus']."</td>
+                                        <td>".$row['Tcreated']."</td>
+                                        <td>".$row['Rfname']." ".$row['Rlname']."</td>
                                     </tr>
                                     ";
                                   }
@@ -175,42 +175,42 @@
                 
                         }
                     }else{
-                      $sql = "SELECT * FROM transactions LEFT JOIN accounts ON accounts.id = transactions.accountId LEFT JOIN destdetails ON destdetails.code = transactions.destinationCode LEFT JOIN fxrates ON fxrates.id = transactions.fxRateId LEFT JOIN receivers ON receivers.r_id = transactions.receiverId LEFT JOIN services ON services.id = transactions.serviceId WHERE status ='completed' OR status ='failed' OR status ='processing' ORDER BY `transactions`.`tansCreatedAt` DESC";
+                      $sql = "SELECT `transactions`.`id` AS Tid, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `transactions`.`invoiceID` AS TinVoice, `transactions`.`orderID` AS Torder, `transactions`.`amountPaid` AS Tpaid, `transactions`.`fees` AS Tfee, `transactions`.`volumeReceived` AS Treceived, `transactions`.`status` AS Tstatus, `transactions`.`CreatedAt` AS Tcreated, `receivers`.`firstName` AS Rfname, `receivers`.`lastName` AS Rlname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `transactions`.`status` ='completed' OR `transactions`.`status` ='failed' OR `transactions`.`status` ='processing' ORDER BY `transactions`.`CreatedAt` DESC";
                       $query = $con->query($sql);
                       $nRow = mysqli_num_rows($query);
                       if($nRow > 0){
                           while($row = $query->fetch_assoc()){
-                            $caught = $row['orderID'];
+                            $caught = $row['Torder'];
                             if($caught != ''){
                                 echo "
-                                <tr>
-                                    <td>".$row['Trans_id']."</td>
-                                    <td>".$row['title'].". ".$row['firstName']." ".$row['lastName']."</td>
-                                    <td>".$row['invoiceID']."</td>
-                                    <td>".$row['orderID']."</td>
-                                    <td>".number_format($row['amountPaid'], 2, '.', '')."</td>
-                                    <td>".number_format($row['fees'], 2, '.', '')."</td>
-                                    <td>".number_format($row['volumeReceived'], 2, '.', '')."</td>
-                                    <td>".$row['status']."</td>
-                                    <td>".$row['tansCreatedAt']."</td>
-                                    <td>".$row['firstNameR']." ".$row['lastNameR']."</td>
-                                </tr>
-                                ";
+                                    <tr>
+                                        <td>".$row['Tid']."</td>
+                                        <td>".$row['Atitle'].". ".$row['Afname']." ".$row['Alname']."</td>
+                                        <td>".$row['TinVoice']."</td>
+                                        <td>".$row['Torder']."</td>
+                                        <td>".number_format($row['Tpaid'], 2, '.', '')."</td>
+                                        <td>".number_format((number_format($row['Tfee'], 2, '.', '')/100)*number_format($row['Tpaid'], 2, '.', ''), 2, '.', '')."</td>
+                                        <td>".number_format($row['Treceived'], 2, '.', '')."</td>
+                                        <td>".$row['Tstatus']."</td>
+                                        <td>".$row['Tcreated']."</td>
+                                        <td>".$row['Rfname']." ".$row['Rlname']."</td>
+                                    </tr>
+                                    ";
                             }else{
                                 echo "
-                                <tr style='background: #e46c6cb6'>
-                                    <td>".$row['Trans_id']."</td>
-                                    <td>".$row['title'].". ".$row['firstName']." ".$row['lastName']."</td>
-                                    <td>".$row['invoiceID']."</td>
-                                    <td>".$row['orderID']."</td>
-                                    <td>".number_format($row['amountPaid'], 2, '.', '')."</td>
-                                    <td>".number_format($row['fees'], 2, '.', '')."</td>
-                                    <td>".number_format($row['volumeReceived'], 2, '.', '')."</td>
-                                    <td>".$row['status']."</td>
-                                    <td>".$row['tansCreatedAt']."</td>
-                                    <td>".$row['firstNameR']." ".$row['lastNameR']."</td>
-                                </tr>
-                                ";
+                                    <tr style='background: #e46c6cb6'>
+                                        <td>".$row['Tid']."</td>
+                                        <td>".$row['Atitle'].". ".$row['Afname']." ".$row['Alname']."</td>
+                                        <td>".$row['TinVoice']."</td>
+                                        <td>".$row['Torder']."</td>
+                                        <td>".number_format($row['Tpaid'], 2, '.', '')."</td>
+                                        <td>".number_format((number_format($row['Tfee'], 2, '.', '')/100)*number_format($row['Tpaid'], 2, '.', ''), 2, '.', '')."</td>
+                                        <td>".number_format($row['Treceived'], 2, '.', '')."</td>
+                                        <td>".$row['Tstatus']."</td>
+                                        <td>".$row['Tcreated']."</td>
+                                        <td>".$row['Rfname']." ".$row['Rlname']."</td>
+                                    </tr>
+                                    ";
                               }
 
                               //$count = $count + 1;
@@ -230,6 +230,7 @@
     $(document).ready( function () {
         $('#example').DataTable({
         'searching'   : false,
+        'order'       :[[8, "desc"]],
         });
     } );
 
