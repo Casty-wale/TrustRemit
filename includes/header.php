@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/daterangepicker.css">
   <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="CSS/util.css">
-    <link rel="stylesheet" type="text/css" href="CSS/main1.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
   <!--===============================================================================================-->
   <!--============================    Date Picker        ============================================-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
