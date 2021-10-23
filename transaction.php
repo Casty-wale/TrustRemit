@@ -1,4 +1,6 @@
-<?php require_once('includes/sidemenu.php')?>
+<?php require_once('includes/sidemenu.php');
+    $time_start = microtime(TRUE);
+?>
 <?php
     if(isset($_POST['calcu'])){
         $start = $_POST['start'];
@@ -175,7 +177,7 @@
                 
                         }
                     }else{
-                      $sql = "SELECT `transactions`.`id` AS Tid, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `transactions`.`invoiceID` AS TinVoice, `transactions`.`orderID` AS Torder, `transactions`.`amountPaid` AS Tpaid, `transactions`.`fees` AS Tfee, `transactions`.`volumeReceived` AS Treceived, `transactions`.`status` AS Tstatus, `transactions`.`CreatedAt` AS Tcreated, `receivers`.`firstName` AS Rfname, `receivers`.`lastName` AS Rlname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `transactions`.`status` ='completed' OR `transactions`.`status` ='failed' OR `transactions`.`status` ='processing' ORDER BY `transactions`.`CreatedAt` DESC";
+                      $sql = "SELECT `transactions`.`id` AS Tid, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `transactions`.`invoiceID` AS TinVoice, `transactions`.`orderID` AS Torder, `transactions`.`amountPaid` AS Tpaid, `transactions`.`fees` AS Tfee, `transactions`.`volumeReceived` AS Treceived, `transactions`.`status` AS Tstatus, `transactions`.`CreatedAt` AS Tcreated, `receivers`.`firstName` AS Rfname, `receivers`.`lastName` AS Rlname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `transactions`.`status` ='completed' OR `transactions`.`status` ='failed' OR `transactions`.`status` ='processing' ORDER BY `transactions`.`id`";
                       $query = $con->query($sql);
                       $nRow = mysqli_num_rows($query);
                       if($nRow > 0){
@@ -223,6 +225,12 @@
                   ?>
               </tbody>
           </table>
+          <?php
+          $time_end = microtime(true);
+          $time = $time_end - $time_start;
+          echo "<br>Total script time $time seconds\n";
+
+          ?>
         </div>
   </section>
   <?php require_once('includes/script.php')?>

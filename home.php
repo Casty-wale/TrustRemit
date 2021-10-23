@@ -26,7 +26,7 @@
                   $details = array();
                   $checker = array();
                   
-                  $sql = "SELECT `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `userdetails`.`dob` AS Udob, `userdetails`.`idType` AS Uidtype, `userdetails`.`idNumber` AS Uidnumber, `accounts`.`phoneNumber` AS ApNumber, `userdetails`.`city` AS Ucity, `userdetails`.`region` AS Uregion, `userdetails`.`countryLong` AS Ucountrylong, `userdetails`.`createdAt` AS Ucreate FROM `userdetails` LEFT JOIN `accounts` ON `accounts`.`id` = `userdetails`.`accountId` ORDER BY `userdetails`.`id` asc";
+                  $sql = "SELECT `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname, `userdetails`.`dob` AS Udob, `userdetails`.`idType` AS Uidtype, `userdetails`.`idNumber` AS Uidnumber, `accounts`.`phoneNumber` AS ApNumber, `userdetails`.`city` AS Ucity, `userdetails`.`region` AS Uregion, `userdetails`.`countryLong` AS Ucountrylong, `userdetails`.`createdAt` AS Ucreate FROM `userdetails` LEFT JOIN `accounts` ON `accounts`.`id` = `userdetails`.`accountId` WHERE 1 ORDER BY `userdetails`.`id` asc";
                   $query = $con->query($sql);
                   $nRow = mysqli_num_rows($query);
                   if($nRow > 0){

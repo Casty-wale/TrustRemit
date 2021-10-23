@@ -18,7 +18,7 @@
             <tbody>
                 <?php
                     $count = 1;
-                    $sql = "SELECT `amountPaid`,`volumeReceived`, `doneAt`, `receivers`.`firstName` AS Rfname, `receivers`.`lastName`AS Rlname, `receivers`.`email` AS Remail, `receivers`.`phoneNumber` AS RPnumber, `receivers`.`countryLong` AS RcountryLong, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `receivers`.`firstName` IS NOT NULL AND `receivers`.`lastName` IS NOT NULL"; //ORDER BY `receivers`.`r_id` ASC;
+                    $sql = "SELECT `amountPaid`,`volumeReceived`, `doneAt`, `receivers`.`firstName` AS Rfname, `receivers`.`lastName`AS Rlname, `receivers`.`email` AS Remail, `receivers`.`phoneNumber` AS RPnumber, `receivers`.`countryLong` AS RcountryLong, `accounts`.`title` AS Atitle, `accounts`.`firstName` AS Afname, `accounts`.`lastName` AS Alname FROM `transactions` LEFT JOIN `accounts` ON `accounts`.`id` = `transactions`.`accountId` LEFT JOIN `fxrates` ON `fxrates`.`id` = `transactions`.`fxRateId` LEFT JOIN `receivers` ON `receivers`.`id` = `transactions`.`receiverId` WHERE `receivers`.`firstName` IS NOT NULL AND `receivers`.`lastName` IS NOT NULL ORDER BY `receivers`.`id`"; //ORDER BY `receivers`.`r_id` ASC;
                     $query = $con->query($sql);
                     $nRow = mysqli_num_rows($query);
                     if($nRow > 0){

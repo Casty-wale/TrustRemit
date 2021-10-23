@@ -18,7 +18,7 @@
             <tbody>
                 <?php
                     $count = 1;
-                    $sql = "SELECT * FROM accounts WHERE 1";
+                    $sql = "SELECT `title`, `firstName`, `lastName`, `email`, `phoneNumber`, `txLimit`, `created` FROM `accounts` WHERE 1";
                     $query = $con->query($sql);
                     $nRow = mysqli_num_rows($query);
                     if($nRow > 0){
