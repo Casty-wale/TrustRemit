@@ -14,14 +14,14 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/firstremit.jpg');">
 			<div class="wrap-login100"> <!--p-t-30 p-b-50-->
-				<span class="login100-form-title"> <!--p-b-41"-->
-					<img src="images/remmy.png" class = "icon" alt="trustremit" style = "width:120px; margin: -10px;">
-					<span style="font-size: 38px; font-weight: 900; font-style: italic; color:rgb(100, 10, 10); text-shadow: 0px 1px 4px #9ac2c2b0">
-						Trust</span><b style="font-size: 38px; font-weight: 900; font-style: italic; 
-						color:rgb(7, 66, 5); text-shadow: 0px 1px 4px #9ac2c2b0">Remit</b></span>
-				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" action = "login.php" method = "POST">
-
+			<form class="login100-form validate-form p-b-33 p-t-5" action = "login.php" method = "POST">
+					<span style="text-transform: uppercase; text-align: center; margin: 20px; width: 40%;"> <!--p-b-41"-->
+						<img src="images/remmy.png" class = "icon" alt="trustremit" style = "width:120px; margin: -10px;">
+						<span style="font-size: 38px; font-weight: 900; font-style: italic; color:rgb(100, 10, 10); text-shadow: 0px 1px 4px #9ac2c2b0">
+							Trust</span><b style="font-size: 38px; font-weight: 900; font-style: italic; 
+							color:rgb(7, 66, 5); text-shadow: 0px 1px 4px #9ac2c2b0">Remit</b></span>
+					<hr>
+					</span>
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="email" placeholder="E-mail"> <!--required-->
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
