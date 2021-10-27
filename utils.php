@@ -9,3 +9,7 @@
     return $totalAppearance;
   }
 ?>
+
+<script>
+  consol.log("Hi there");
+</script>

@@ -30,6 +30,6 @@
 		$_SESSION['error'] = 'Input User credentials first';
 	}
 
-	// header('location: index.php');
+	header('location: index.php');
 
 ?>

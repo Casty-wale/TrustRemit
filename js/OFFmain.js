@@ -1,5 +1,5 @@
-    $(document).ready( function () {
-        $('#example').DataTable({
-        'searching'   : true,
-        });
-    } );
+    // $(document).ready( function () {
+    //     $('#example').DataTable({
+    //     'searching'   : true,
+    //     });
+    // } );
