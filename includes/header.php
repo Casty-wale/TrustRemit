@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
-<html lang="en" dir="ltr">
+
+<html lang="en">
   <head>
     <title>TrustRemit</title>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
   <!--===============================================================================================-->
       
-  <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
+  <!--<title> Responsive Sidebar Menu </title>-->
     <link rel="stylesheet" href="CSS/pro.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
