@@ -20,7 +20,7 @@
 				// $_SESSION['admin'] = $row['id'];
 				$_SESSION['user'] = "Kofi Owusu";
 				$_SESSION['access'] = "User";
-				header('location: home.php');
+				header('location: transaction.php');
 				exit();
 			}
 		}
