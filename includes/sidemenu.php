@@ -20,14 +20,14 @@
         </form>
       </li> -->
       <li>
-        <a href="home.php">
+        <a href="#">
         <i class='bx bx-user'></i>
           <span class="links_name">Users</span>
         </a>
          <span class="tooltip">Users</span>
       </li>
       <li>
-        <a href="account.php">
+        <a href="#">
           <i class='bx bxs-user-account'></i>
           <span class="links_name">Accounts</span>
         </a>
@@ -55,14 +55,14 @@
        <span class="tooltip">Pending</span>
      </li>
      <li>
-       <a href="rate.php">
+       <a href="#">
         <i class='bx bx-yen'></i>
         <span class="links_name">Fox Rate</span>
        </a>
        <span class="tooltip">Fox Rate</span>
      </li>
      <li>
-       <a href="receiver.php">
+       <a href="#">
         <i class='bx bx-donate-heart'></i>
         <span class="links_name">Receiver</span>
        </a>
@@ -70,7 +70,7 @@
      </li>
      <li>
       <div class="iocn-link">
-       <a href="feedback.php">
+       <a href="#">
         <i class='bx bx-chat' ></i> 
         <span class="links_name">Feedback</span>
       </a>
